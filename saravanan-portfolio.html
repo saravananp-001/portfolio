@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Saravanan P · Developer</title>
+<meta name="description" content="Saravanan P — Blockchain and Rust developer with 5 years of experience in C++, Rust and Solidity. Open to developer roles in any location.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: editorial paper page. Giant ghost name behind a live 3D block-chain in the hero,
+   a hanging validator badge in About, and the career written as a chain of hashed blocks. */
+:root{
+  --paper:#ECEDE7;
+  --paper-2:#E2E4DC;
+  --ink:#1D1F33;
+  --muted:#686B7C;
+  --line:#CDD0C6;
+  --accent:#4E3FD8;
+  --ghost:rgba(29,31,51,.055);
+  --card:#F7F7F3;
+  --on-ink:#F4F4F0;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#101122;--paper-2:#171933;--ink:#E9EAF3;--muted:#9A9DB4;--line:#2A2D4A;
+  --accent:#9389FF;--ghost:rgba(233,234,243,.05);--card:#181A33;--on-ink:#101122;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#101122;--paper-2:#171933;--ink:#E9EAF3;--muted:#9A9DB4;--line:#2A2D4A;
+  --accent:#9389FF;--ghost:rgba(233,234,243,.05);--card:#181A33;--on-ink:#101122;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--display);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{text-wrap:balance;margin:0}
+
+/* ---------- nav ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--paper) 82%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:.95rem}
+.mono-badge{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;
+  font-family:var(--mono);font-size:.72rem;font-weight:500}
+.links{display:flex;gap:4px;padding:5px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.links a{text-decoration:none;font-size:.82rem;padding:7px 14px;border-radius:999px;color:var(--muted);transition:background .2s,color .2s}
+.links a:hover,.links a.on{background:var(--ink);color:var(--on-ink)}
+.blockclock{font-family:var(--mono);font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:#2DBE7E;box-shadow:0 0 0 0 rgba(45,190,126,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(45,190,126,0)}100%{box-shadow:0 0 0 0 rgba(45,190,126,0)}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{position:relative;min-height:min(820px,calc(100svh - 70px));display:grid;grid-template-columns:1.05fr 1fr;align-items:end;gap:24px;padding-block:24px 56px}
+.ghost{position:absolute;inset:6% 0 auto;font-family:var(--display);font-weight:900;font-size:clamp(5rem,19vw,17rem);
+  letter-spacing:-.04em;line-height:.85;color:var(--ghost);white-space:nowrap;text-align:center;user-select:none;pointer-events:none}
+#chain{position:absolute;right:max(0px,calc((100vw - 1240px)/2));top:0;width:min(54vw,680px);height:78%;}
+.hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;gap:20px;min-width:0}
+.hero h1{font-weight:800;font-size:clamp(3rem,8.4vw,7.2rem);line-height:.92;letter-spacing:-.045em}
+.hero h1 .stop{color:var(--accent)}
+.hero .sub{max-width:34ch;color:var(--muted);font-size:1.06rem}
+.hero .sub b{color:var(--ink);font-weight:600}
+.hero-side{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:14px;justify-self:end}
+.status{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.74rem;background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+.ctas{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:flex-end}
+.pill{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--on-ink);text-decoration:none;
+  font-weight:600;font-size:.92rem;padding:14px 22px;border-radius:999px;transition:transform .2s}
+.pill:hover{transform:translateY(-2px)}
+.pill .arr{transition:transform .2s}.pill:hover .arr{transform:translateX(3px)}
+.txt{font-size:.9rem;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.txt:hover{border-color:var(--ink)}
+.ghost-pill{display:inline-flex;align-items:center;text-decoration:none;font-weight:600;font-size:.92rem;padding:13px 20px;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink);transition:background .2s,color .2s}
+.ghost-pill:hover{background:var(--ink);color:var(--on-ink)}
+.ctas{gap:12px!important}
+.nav-cta{padding:9px 18px;font-size:.84rem}
+.tx-strip{font-family:var(--mono);font-size:.7rem;color:var(--muted);text-align:right;line-height:1.7}
+.tx-strip span{color:var(--ink)}
+
+/* ---------- section scaffold ---------- */
+section{padding-block:clamp(72px,10vw,128px)}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:40px}
+.sec-head .eyebrow{white-space:nowrap}
+.sec-head .rule{flex:1;height:1px;background:var(--line)}
+
+/* ---------- about ---------- */
+.about .grid{display:grid;grid-template-columns:1.1fr .85fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+.about h2{font-size:clamp(2.6rem,5.6vw,4.6rem);font-weight:800;letter-spacing:-.04em;line-height:1}
+.about h2 em{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em}
+.about p{max-width:46ch;font-size:1.05rem}
+.about p.soft{color:var(--muted);font-size:.96rem}
+.about .left{display:flex;flex-direction:column;gap:20px;min-width:0}
+.about .row{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:8px}
+
+/* lanyard badge */
+.lanyard{position:relative;display:flex;flex-direction:column;align-items:center;transform-origin:50% -60px;animation:sway 6s ease-in-out infinite;margin-top:-40px}
+@keyframes sway{0%,100%{transform:rotate(-2.2deg)}50%{transform:rotate(2.2deg)}}
+.strap{width:22px;height:96px;background:repeating-linear-gradient(180deg,var(--ink) 0 10px,var(--accent) 10px 12px);border-radius:3px}
+.clip{width:34px;height:20px;border:3px solid var(--muted);border-radius:6px;margin-top:-4px;background:var(--paper-2)}
+.badge{width:min(100%,290px);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;
+  box-shadow:0 30px 60px -30px rgba(20,20,50,.35);margin-top:-2px;position:relative}
+.badge .hole{width:46px;height:8px;border-radius:8px;background:var(--paper);border:1px solid var(--line);margin:0 auto 16px}
+.badge .who{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+.badge img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}
+.badge .who b{display:block;font-size:1rem}
+.badge .who small{font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.08em}
+.badge h3{font-size:.92rem;margin-bottom:10px}
+.badge ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+.badge li{display:flex;gap:10px;align-items:center;font-size:.86rem}
+.badge li i{flex:none;width:18px;height:18px;border-radius:50%;background:var(--ink);color:var(--on-ink);display:grid;place-items:center;font-style:normal;font-size:.62rem}
+.badge .sig{font-family:var(--serif);font-style:italic;font-size:1.6rem;margin-top:14px;border-top:1px dashed var(--line);padding-top:8px}
+.badge .addr{font-family:var(--mono);font-size:.6rem;color:var(--muted);word-break:break-all}
+
+.facts{display:flex;flex-direction:column;min-width:0}
+.facts .eyebrow{margin-bottom:10px}
+.facts dl{margin:0}
+.facts .f{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.facts dt{font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;padding-top:3px}
+.facts dd{margin:0;text-align:right}
+.quote{font-family:var(--serif);font-style:italic;font-size:1.65rem;line-height:1.2;margin-top:28px;color:var(--ink)}
+.quote small{display:block;font-family:var(--mono);font-style:normal;font-size:.66rem;color:var(--muted);margin-top:10px;letter-spacing:.1em}
+
+/* ---------- stack as token balances ---------- */
+.stack{background:var(--paper-2)}
+.stack h2,.chains h2,.ledger h2,.contact h2{font-size:clamp(2.2rem,4.6vw,3.6rem);font-weight:800;letter-spacing:-.035em;line-height:1}
+.stack h2 em,.chains h2 em,.ledger h2 em,.contact h2 em{font-family:var(--serif);font-weight:400;font-style:italic}
+.split-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.split-head p{max-width:40ch;color:var(--muted);margin:0}
+.wallet{border:1px solid var(--line);border-radius:20px;background:var(--card);overflow:hidden}
+.wallet-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.tok{display:grid;grid-template-columns:56px minmax(0,1.1fr) minmax(0,2fr) 120px;gap:18px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);transition:background .2s}
+.tok:last-child{border-bottom:0}
+.tok:hover{background:var(--paper)}
+.coin{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:.66rem;font-weight:500;
+  background:var(--ink);color:var(--on-ink);position:relative}
+.coin::after{content:"";position:absolute;inset:3px;border-radius:50%;border:1px dashed color-mix(in srgb,var(--on-ink) 45%,transparent)}
+.tok b{display:block;font-size:1.02rem}
+.tok .tk{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.tok p{margin:0;color:var(--muted);font-size:.9rem}
+.bar{height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--accent);border-radius:6px}
+.tok .lbl{font-family:var(--mono);font-size:.64rem;color:var(--muted);margin-top:6px;text-align:right}
+
+/* ---------- chains ---------- */
+.net{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative}
+.node{padding:30px 22px 26px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px;position:relative;min-width:0}
+.node:last-child{border-right:0}
+.node .n{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.node h3{font-size:1.55rem;font-weight:700;letter-spacing:-.02em}
+.node p{margin:0;color:var(--muted);font-size:.9rem}
+.node .glyph{width:52px;height:52px}
+.node .glyph svg{width:100%;height:100%}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.tag{font-family:var(--mono);font-size:.74rem;border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--card)}
+
+/* ---------- ledger ---------- */
+.blocks{display:flex;flex-direction:column;gap:0;position:relative}
+.blk{display:grid;grid-template-columns:150px minmax(0,1fr);gap:clamp(18px,4vw,48px);position:relative}
+.blk-meta{display:flex;flex-direction:column;gap:6px;padding-top:28px}
+.blk-meta .h{font-family:var(--display);font-weight:900;font-size:2.6rem;letter-spacing:-.04em;line-height:1}
+.blk-meta .h small{font-size:1rem;color:var(--muted);font-weight:500}
+.blk-meta .st{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+.blk-meta .st.live{color:#1F9E67}
+.blk-card{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:26px 26px 20px;margin-block:12px;min-width:0}
+.blk-card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.blk-card h3{font-size:1.6rem;font-weight:700;letter-spacing:-.02em}
+.blk-card .role{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--muted)}
+.blk-card p{margin:14px 0 0;max-width:62ch}
+.blk-card .txs{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.hashes{margin-top:20px;padding-top:14px;border-top:1px dashed var(--line);display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.hashes code{color:var(--ink);overflow-wrap:anywhere}
+.link-line{position:absolute;left:6px;top:150px;bottom:-14px;width:2px;background:repeating-linear-gradient(180deg,var(--line) 0 6px,transparent 6px 12px)}
+.blk:last-child .link-line{display:none}
+.verify{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;margin-top:22px;color:var(--muted)}
+.verify b{color:#1F9E67;font-weight:500}
+
+/* ---------- contact ---------- */
+.contact{background:var(--ink);color:var(--on-ink)}
+.contact .eyebrow{color:color-mix(in srgb,var(--on-ink) 60%,transparent)}
+.contact .rule{background:color-mix(in srgb,var(--on-ink) 18%,transparent)}
+.tx{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:start}
+.tx h2{color:var(--on-ink)}
+.tx .lead{color:color-mix(in srgb,var(--on-ink) 70%,transparent);max-width:40ch;margin-top:18px}
+.mail{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:24px;padding:10px 10px 10px 18px;border-radius:999px;
+  border:1px solid color-mix(in srgb,var(--on-ink) 22%,transparent);max-width:100%}
+.mail span{font-size:.92rem;overflow-wrap:anywhere;user-select:all}
+.mail button{background:transparent;color:var(--on-ink);border:1px solid color-mix(in srgb,var(--on-ink) 30%,transparent);border-radius:999px;
+  padding:7px 14px;font-family:var(--mono);font-size:.72rem;cursor:pointer}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:460px;margin-top:4px}
+.stats div{border-top:1px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:2px}
+.stats b{font-size:2.2rem;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.stats span{font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.txcard{border:1px solid color-mix(in srgb,var(--on-ink) 20%,transparent);border-radius:18px;padding:22px;font-family:var(--mono);font-size:.8rem;min-width:0}
+.txrow{display:grid;grid-template-columns:90px minmax(0,1fr);gap:12px;padding:11px 0;border-bottom:1px dashed color-mix(in srgb,var(--on-ink) 18%,transparent)}
+.txrow span:first-child{color:color-mix(in srgb,var(--on-ink) 55%,transparent);text-transform:uppercase;font-size:.68rem;letter-spacing:.08em;padding-top:2px}
+.txrow span:last-child{overflow-wrap:anywhere}
+.txcard label{display:block;color:color-mix(in srgb,var(--on-ink) 55%,transparent);text-transform:uppercase;font-size:.68rem;letter-spacing:.08em;margin:16px 0 8px}
+.txcard textarea{width:100%;min-height:96px;resize:vertical;background:transparent;color:var(--on-ink);border:1px solid color-mix(in srgb,var(--on-ink) 22%,transparent);
+  border-radius:12px;padding:12px;font-family:var(--mono);font-size:.82rem}
+.txcard .acts{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.pill.inv{background:var(--on-ink);color:var(--ink);border:0;cursor:pointer;font-family:var(--display)}
+.txcard .note{color:color-mix(in srgb,var(--on-ink) 60%,transparent);font-size:.72rem}
+footer{background:var(--ink);color:color-mix(in srgb,var(--on-ink) 55%,transparent);font-family:var(--mono);font-size:.7rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px;border-top:1px solid color-mix(in srgb,var(--on-ink) 14%,transparent)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .about .grid{grid-template-columns:1fr 1fr}
+  .about .left{grid-column:1/-1}
+  .lanyard{margin-top:0}
+  .tok{grid-template-columns:50px minmax(0,1fr) 100px}
+  .tok p{display:none}
+  .net{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .node:nth-child(2){border-right:0}
+  .node:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media (max-width:820px){
+  .links{display:none}
+  .hero .wrap{grid-template-columns:1fr;min-height:auto;padding-top:min(78vw,440px)}
+  #chain{width:100%;height:min(82vw,470px);right:0}
+  .hero-side{justify-self:start;align-items:flex-start}
+  .ctas{justify-content:flex-start}
+  .ghost-pill{display:inline-flex;align-items:center;text-decoration:none;font-weight:600;font-size:.92rem;padding:13px 20px;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink);transition:background .2s,color .2s}
+.ghost-pill:hover{background:var(--ink);color:var(--on-ink)}
+.ctas{gap:12px!important}
+.nav-cta{padding:9px 18px;font-size:.84rem}
+.tx-strip{text-align:left}
+  .tx{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .about .grid{grid-template-columns:1fr}
+  .blk{grid-template-columns:1fr;gap:0}
+  .blk-meta{flex-direction:row;align-items:baseline;gap:14px;padding-top:18px}
+  .link-line{display:none}
+  .net{grid-template-columns:1fr}
+  .node{border-right:0;border-bottom:1px solid var(--line)}
+  .node:last-child{border-bottom:0}
+  .facts .f{grid-template-columns:96px 1fr}
+  .blockclock .full{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Back to top"><span class="mono-badge">SP</span>Saravanan P</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#about">About</a><a href="#stack">Stack</a><a href="#chains">Chains</a><a href="#ledger">Ledger</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="ghost-pill nav-cta" href="#contact">Hire me</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="ghost" aria-hidden="true">SARAVANAN</div>
+    <canvas id="chain" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">Saravanan P · Namakkal, Tamil Nadu</span>
+        <h1>Blockchain<br>&amp; Rust<br>Developer<span class="stop">.</span></h1>
+        <p class="sub"><b>5 years</b> turning ideas into secure, efficient software. Technical Team Lead at <b>Zodiako Ltd</b>, working in <b>Rust</b>, <b>C++</b> and <b>Solidity</b>.</p>
+      </div>
+      <div class="hero-side">
+        <span class="status"><span class="dot"></span>Open to developer roles · Any location</span>
+        <div class="ctas">
+          <a class="pill" href="#ledger">View my experience <span class="arr">→</span></a>
+          <a class="ghost-pill" href="#contact">Contact me</a>
+          <a class="ghost-pill" href="https://www.linkedin.com/in/saravanan-p-354204169/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+        <div class="tx-strip"><span>Rust</span> · <span>C++</span> · <span>Solidity</span> · <span>Team Lead</span><br>Full-time · Remote, on-site or relocation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Block 01 · About</span><span class="rule"></span></div>
+      <div class="grid">
+        <div class="left">
+          <h2>Hi, I'm <em>Saravanan.</em></h2>
+          <p>I'm a blockchain developer with 5 years of hands-on experience, now leading the technical team at Zodiako Ltd. I specialize in C++ and Solidity, with a deep understanding of blockchain architecture, consensus mechanisms and ERC-4337 account abstraction.</p>
+          <p class="soft">Beyond blockchain, I write Rust and C++ for fast, reliable systems, and I'm open to developer roles of any kind. I trained as a mechanical engineer, started as an intern in 2020, and have grown from there to leading a technical team.</p>
+          <div class="stats">
+            <div><b>5+</b><span>years in blockchain</span></div>
+            <div><b>4</b><span>companies</span></div>
+            <div><b>6</b><span>roles · intern to lead</span></div>
+          </div>
+          <div class="row">
+            <a class="pill" href="#contact">Start a conversation <span class="arr">→</span></a>
+            <a class="txt" href="https://www.linkedin.com/in/saravanan-p-354204169/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <div class="lanyard" aria-label="Validator ID badge">
+          <div class="strap"></div><div class="clip"></div>
+          <div class="badge">
+            <div class="hole"></div>
+            <div class="who">
+              <img src="data:image/jpeg;base64,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" alt="Portrait of Saravanan P">
+              <div><b>Saravanan P</b><small>VALIDATOR · HE/HIM</small></div>
+            </div>
+            <h3>What I am</h3>
+            <ul>
+              <li><i>✓</i>Technical Team Lead</li>
+              <li><i>✓</i>Blockchain Developer</li>
+              <li><i>✓</i>Rust Developer</li>
+              <li><i>✓</i>Smart Contract Engineer</li>
+              <li><i>✓</i>ERC-4337 Specialist</li>
+                          </ul>
+            <div class="sig">Saravanan</div>
+          </div>
+        </div>
+
+        <div class="facts">
+          <span class="eyebrow">Quick facts</span>
+          <dl>
+            <div class="f"><dt>Based in</dt><dd>Namakkal, Tamil Nadu, India</dd></div>
+            <div class="f"><dt>Currently</dt><dd>Technical Team Lead · Zodiako Ltd</dd></div>
+            <div class="f"><dt>Studied</dt><dd>BE Mechanical Engineering · Kongunadu College of Engineering &amp; Technology, 2015–2019</dd></div>
+            <div class="f"><dt>Worked in</dt><dd>Chennai, India</dd></div>
+            <div class="f"><dt>Looking for</dt><dd>Developer roles · Blockchain, Rust, C++ · Any location</dd></div>
+            <div class="f"><dt>Top skills</dt><dd>Solution architecture · Technical project leadership · OOP</dd></div>
+          </dl>
+          <p class="quote">“Code for a more open, secure, decentralized tomorrow.”<small>— FROM MY BANNER</small></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="stack" id="stack">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Block 02 · Stack</span><span class="rule"></span></div>
+      <div class="split-head">
+        <h2>My skill <em>wallet.</em></h2>
+        <p>The skills I hold, listed like token balances. Languages first, then the blockchain and leadership skills I use every day.</p>
+      </div>
+      <div class="wallet" role="list">
+        <div class="wallet-top"><span>wallet · 0xSaravanan</span><span>10 assets</span></div>
+        <div class="tok" role="listitem"><span class="coin">RS</span><div><b>Rust</b><span class="tk">$RS · systems</span></div><p>Memory-safe, high-performance code for back ends, tooling and chains.</p><div><div class="bar"><span style="width:92%"></span></div><div class="lbl">expert</div></div></div>
+        <div class="tok" role="listitem"><span class="coin">SOL</span><div><b>Solidity</b><span class="tk">$SOL · smart contracts</span></div><p>Writing, testing, auditing and deploying EVM smart contracts.</p><div><div class="bar"><span style="width:94%"></span></div><div class="lbl">expert</div></div></div>
+        <div class="tok" role="listitem"><span class="coin">C++</span><div><b>C / C++</b><span class="tk">$CPP · native</span></div><p>Performance-critical native code close to the protocol layer.</p><div><div class="bar"><span style="width:94%"></span></div><div class="lbl">expert</div></div></div>
+        <div class="tok" role="listitem"><span class="coin">4337</span><div><b>ERC-4337 · Account Abstraction</b><span class="tk">$AA · smart accounts</span></div><p>Smart accounts, UserOperations, bundlers and paymasters.</p><div><div class="bar"><span style="width:90%"></span></div><div class="lbl">expert</div></div></div>
+        <div class="tok" role="listitem"><span class="coin">SC</span><div><b>Smart Contracts &amp; DApps</b><span class="tk">$DAPP · on-chain apps</span></div><p>End-to-end decentralized apps, from contract design to deployment.</p><div><div class="bar"><span style="width:90%"></span></div><div class="lbl">expert</div></div></div>
+        <div class="tok" role="listitem"><span class="coin">BFT</span><div><b>Blockchain Architecture &amp; Consensus</b><span class="tk">$ARCH · protocol design</span></div><p>How chains are built and agree: nodes, blocks and consensus mechanisms.</p><div><div class="bar"><span style="width:88%"></span></div><div class="lbl">advanced</div></div></div>
+        <div class="tok" role="listitem"><span class="coin">SA</span><div><b>Solution Architecture</b><span class="tk">$SYS · system design</span></div><p>Designing systems that are secure, scalable and maintainable.</p><div><div class="bar"><span style="width:86%"></span></div><div class="lbl">advanced</div></div></div>
+        <div class="tok" role="listitem"><span class="coin">LEAD</span><div><b>Technical Leadership</b><span class="tk">$LEAD · teams &amp; delivery</span></div><p>Leading developers, planning projects and owning technical decisions.</p><div><div class="bar"><span style="width:86%"></span></div><div class="lbl">advanced</div></div></div>
+        <div class="tok" role="listitem"><span class="coin">W3</span><div><b>Web3 Integration &amp; VRF</b><span class="tk">$W3 · contracts to apps</span></div><p>Wallet flows, contract integration and verifiable on-chain randomness.</p><div><div class="bar"><span style="width:84%"></span></div><div class="lbl">advanced</div></div></div>
+        <div class="tok" role="listitem"><span class="coin">JSX</span><div><b>React.js</b><span class="tk">$REACT · dApp front ends</span></div><p>Building dApp interfaces that connect to smart contracts.</p><div><div class="bar"><span style="width:66%"></span></div><div class="lbl">working</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAINS -->
+  <section class="chains" id="chains">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Block 03 · Networks</span><span class="rule"></span></div>
+      <div class="split-head">
+        <h2>Chains I <em>build on.</em></h2>
+        <p>EVM networks, a privacy-first chain and a messaging layer that links them all.</p>
+      </div>
+      <div class="net">
+        <div class="node"><span class="n">node_01</span><div class="glyph" aria-hidden="true"><svg viewBox="0 0 52 52"><path d="M26 6 44 16v20L26 46 8 36V16Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M26 16 35 21v10l-9 5-9-5V21Z" fill="var(--accent)"/></svg></div><h3>Polygon</h3><p>Low-fee EVM scaling for Ethereum.</p></div>
+        <div class="node"><span class="n">node_02</span><div class="glyph" aria-hidden="true"><svg viewBox="0 0 52 52"><rect x="15" y="15" width="22" height="22" transform="rotate(45 26 26)" fill="none" stroke="currentColor" stroke-width="2"/><rect x="21" y="21" width="10" height="10" transform="rotate(45 26 26)" fill="var(--accent)"/></svg></div><h3>BNB Chain</h3><p>High-throughput EVM chain for DApps and DeFi.</p></div>
+        <div class="node"><span class="n">node_03</span><div class="glyph" aria-hidden="true"><svg viewBox="0 0 52 52"><path d="M26 6 42 12v12c0 10-7 17-16 22-9-5-16-12-16-22V12Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M18 32V20l8 8 8-8v12" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round"/></svg></div><h3>Monero</h3><p>Privacy-first chain with ring signatures and stealth addresses.</p></div>
+        <div class="node"><span class="n">node_04</span><div class="glyph" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="16" cy="26" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="36" cy="26" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M22 26h8" stroke="var(--accent)" stroke-width="4"/></svg></div><h3>LayerZero</h3><p>Omnichain messaging between networks.</p></div>
+      </div>
+      <div class="tags"><span class="tag">Smart Contracts</span><span class="tag">DApps</span><span class="tag">Web3</span><span class="tag">Crypto Infra</span><span class="tag">Account Abstraction</span><span class="tag">VRF</span><span class="tag">Open Source</span></div>
+    </div>
+  </section>
+
+  <!-- LEDGER -->
+  <section class="ledger" id="ledger">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Block 04 · Ledger</span><span class="rule"></span></div>
+      <div class="split-head">
+        <h2>Career, <em>on-chain.</em></h2>
+        <p>Every step is a block, linked to the one before it. From intern in 2020 to Technical Team Lead today.</p>
+      </div>
+      <div class="blocks" id="blocks"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Block 05 · Contact</span><span class="rule"></span></div>
+      <div class="tx">
+        <div>
+          <h2>Send a <em>transaction.</em></h2>
+          <p class="lead">Hiring a blockchain, Rust or C++ developer? I'm open to roles in any location. Email me or send a message on LinkedIn.</p>
+          <div class="mail">
+            <span class="mono" id="email">saravananpmech01@gmail.com</span>
+            <button type="button" id="copyMail">Copy</button>
+          </div>
+          <div class="row" style="display:flex;gap:18px;margin-top:22px;flex-wrap:wrap;align-items:center">
+            <a class="pill inv" href="https://www.linkedin.com/in/saravanan-p-354204169/" target="_blank" rel="noopener">Message on LinkedIn <span class="arr">↗</span></a>
+          </div>
+        </div>
+        <form class="txcard" id="txform">
+          <div class="txrow"><span>From</span><span>you</span></div>
+          <div class="txrow"><span>To</span><span>saravananpmech01@gmail.com</span></div>
+          <div class="txrow"><span>Location</span><span>Any · Open to relocate</span></div>
+          <label for="msg">Data (your message)</label>
+          <textarea id="msg" placeholder="Hi Saravanan, we're building…"></textarea>
+          <div class="acts">
+            <button class="pill inv" type="submit">Copy message</button>
+            <span class="note" id="txnote">Copy it, then paste it into an email or LinkedIn.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap"><span>© 2026 Saravanan P</span><span>Blockchain · Rust · C++ · Since 2020</span></div></footer>
+
+<script>
+(()=>{
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ---------- hashing ---------- */
+async function sha256(s){
+  try{
+    const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+    return '0x'+[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+  }catch(e){ // fallback: simple non-crypto hash, still deterministic
+    let h1=0x811c9dc5,out='';for(let r=0;r<8;r++){for(const c of s+r){h1^=c.charCodeAt(0);h1=Math.imul(h1,16777619)>>>0}out+=h1.toString(16).padStart(8,'0')}
+    return '0x'+out;
+  }
+}
+const short = h => h.slice(0,10)+'…'+h.slice(-6);
+
+/* ---------- ledger ---------- */
+const chainData = [
+  { n:0, label:'Genesis', status:'Education', title:'Kongunadu College of Engineering and Technology',
+    role:'BE, Mechanical Engineering', when:'2015 – 2019', where:'Tamil Nadu, India', dur:'4 yrs' },
+  { n:1, label:'Block', status:'Internship', title:'Applepro IT Solutions Pvt Ltd',
+    role:'Blockchain Intern', when:'Nov 2020 – Mar 2021', where:'Chennai, India', dur:'5 mos' },
+  { n:2, label:'Block', status:'Role', title:'Blockhash Technologies',
+    role:'Junior Software Developer', when:'Mar 2021 – Jan 2022', where:'Chennai, India', dur:'11 mos' },
+  { n:3, label:'Block', status:'Promotion', title:'Blockhash Technologies',
+    role:'Software Analyst', when:'Feb 2022 – Jan 2023', where:'Chennai, India', dur:'1 yr' },
+  { n:4, label:'Block', status:'Role', title:'Vee4 Software',
+    role:'Blockchain Developer', when:'Jan 2023 – Jan 2025', where:'Chennai, India', dur:'2 yrs 1 mo' },
+  { n:5, label:'Block', status:'Promotion', title:'Vee4 Software',
+    role:'Senior Blockchain Developer', when:'Jan 2025 – Dec 2025', where:'Chennai, India', dur:'1 yr' },
+  { n:6, label:'Head', status:'Current', live:true, title:'Zodiako Ltd',
+    role:'Technical Team Lead', when:'Dec 2025 – Present', where:'Chennai, India', dur:'1 yr' }
+];
+async function buildLedger(){
+  const wrap = document.getElementById('blocks');
+  let prev = '0x'+'0'.repeat(64);
+  const built=[];
+  for(const b of chainData){
+    const payload = JSON.stringify({n:b.n,title:b.title,role:b.role,when:b.when,where:b.where,prev});
+    const hash = await sha256(payload);
+    built.push({...b,prev,hash}); prev = hash;
+  }
+  // newest first, like a block explorer
+  wrap.innerHTML = built.slice().reverse().map(b=>`
+    <article class="blk">
+      <div class="blk-meta">
+        <span class="h"><small>#</small>${b.n}</span>
+        <span class="st ${b.live?'live':''}">${b.live?'● ':''}${b.status}</span>
+        <span class="eyebrow" style="font-size:.62rem">${b.label}</span>
+      </div>
+      <span class="link-line" aria-hidden="true"></span>
+      <div class="blk-card">
+        <div class="top"><h3>${b.title}</h3><span class="role">${b.role}</span></div>
+        <div class="txs"><span class="tag">${b.when}</span><span class="tag">${b.where}</span><span class="tag">${b.dur}</span></div>
+      </div>
+    </article>`).join('');
+}
+buildLedger();
+
+/* ---------- block counter ---------- */
+let block = 19_000_000 + Math.floor((Date.now()/1000 - 1_700_000_000)/12) % 1_000_000;
+
+
+/* ---------- nav highlight ---------- */
+const links=[...document.querySelectorAll('.links a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
+
+/* ---------- contact: sign & copy ---------- */
+document.getElementById('txform').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const ta=document.getElementById('msg'), note=document.getElementById('txnote');
+  const m=ta.value.trim();
+  if(!m){note.textContent='Write a message first, then sign it.';ta.focus();return}
+  try{await navigator.clipboard.writeText(m);note.textContent='Copied. Paste it into an email or LinkedIn.'}
+  catch(_){ta.select();note.textContent='Press Ctrl/Cmd+C to copy, then paste it into an email or LinkedIn.'}
+});
+document.getElementById('copyMail').addEventListener('click',async e=>{
+  const btn=e.currentTarget, em=document.getElementById('email');
+  try{await navigator.clipboard.writeText(em.textContent);btn.textContent='Copied'}
+  catch(_){const r=document.createRange();r.selectNodeContents(em);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Press ⌘/Ctrl+C'}
+  setTimeout(()=>btn.textContent='Copy',2200);
+});
+
+/* ---------- hero: 3D chain of blocks ---------- */
+const cv=document.getElementById('chain'), ctx=cv.getContext('2d');
+let W=0,H=0,dpr=1;
+function size(){dpr=Math.min(2,devicePixelRatio||1);const r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+addEventListener('resize',size);size();
+const N=6;
+const blocks=[...Array(N)].map((_,i)=>{const t=i/(N-1)-.5;return{x:t*2.6,y:Math.sin(i*1.1)*.55 - t*1.2,z:Math.cos(i*1.3)*.7,s:.27 - Math.abs(t)*.07}});
+const V=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
+const F=[[0,1,2,3],[4,5,6,7],[0,1,5,4],[2,3,7,6],[1,2,6,5],[0,3,7,4]];
+let mx=0,my=0;
+addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)});
+function rot(p,a,b){let [x,y,z]=p;let c=Math.cos(a),s=Math.sin(a);[x,z]=[x*c+z*s,-x*s+z*c];c=Math.cos(b);s=Math.sin(b);[y,z]=[y*c-z*s,y*s+z*c];return[x,y,z]}
+function proj([x,y,z]){const f=4.2/(4.2+z);const sc=Math.min(W,H*1.15)*.23;return[W*.5+x*sc*f,H*.4+y*sc*f,z]}
+function frame(t){
+  const ink=css('--ink'),acc=css('--accent'),card=css('--card');
+  ctx.clearRect(0,0,W,H);
+  const A=t*.00018+mx*.6, B=-.38+my*.25;
+  const centers=blocks.map(b=>proj(rot([b.x,b.y,b.z],A,B)));
+  // links
+  ctx.lineWidth=1.4;ctx.strokeStyle=ink;ctx.globalAlpha=.55;ctx.setLineDash([4,6]);
+  ctx.beginPath();centers.forEach((c,i)=>i?ctx.lineTo(c[0],c[1]):ctx.moveTo(c[0],c[1]));ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;
+  // pulse travelling along the chain
+  const seg=(t*.0004)%(N-1), k=Math.floor(seg), f=seg-k;
+  const p=[centers[k][0]+(centers[k+1][0]-centers[k][0])*f, centers[k][1]+(centers[k+1][1]-centers[k][1])*f];
+  // faces of all cubes sorted by depth
+  const faces=[];
+  blocks.forEach((b,bi)=>{
+    const spin=t*.0006*(bi%2?1:-1)+bi;
+    const pts=V.map(v=>{let q=[v[0]*b.s,v[1]*b.s,v[2]*b.s];q=rot(q,spin,spin*.6);return proj(rot([q[0]+b.x,q[1]+b.y,q[2]+b.z],A,B))});
+    F.forEach(fc=>{const z=fc.reduce((a,i)=>a+pts[i][2],0)/4;faces.push({pts:fc.map(i=>pts[i]),z,bi})});
+  });
+  faces.sort((a,b)=>b.z-a.z);
+  const lit=k+(f>.5?1:0);
+  faces.forEach(fc=>{
+    ctx.beginPath();fc.pts.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.closePath();
+    ctx.fillStyle=fc.bi===lit?acc:card;ctx.globalAlpha=fc.bi===lit?.85:.9;ctx.fill();
+    ctx.globalAlpha=1;ctx.strokeStyle=ink;ctx.lineWidth=1.2;ctx.stroke();
+  });
+  // pulse on top
+  ctx.fillStyle=acc;ctx.beginPath();ctx.arc(p[0],p[1],5,0,7);ctx.fill();
+  ctx.globalAlpha=.25;ctx.beginPath();ctx.arc(p[0],p[1],12,0,7);ctx.fill();ctx.globalAlpha=1;
+  // block numbers
+  if(!reduce) requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
